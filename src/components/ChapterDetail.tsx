@@ -19,10 +19,12 @@ const ChapterDetail: React.FC<ChapterDetailProps> = () => {
   }
 
   return (
-    <div className="bg-slate-800 border border-gray-600 p-4 mt-5">
+    <div className="  mt-5">
       <div className="mx-auto">
-        <h3>{chapterTitle}</h3>
-        <ul className="mt-4">
+        {chapterTitle && (
+          <h1 className="text-white text-xl">{decodeSlug(chapterTitle)}</h1>
+        )}
+        <ul className="mt-4 p-2 border border-gray-600">
           {lessons?.map((lesson, index) => (
             <li key={lesson.id} className="mb-2">
               <div className="flex">
@@ -31,7 +33,7 @@ const ChapterDetail: React.FC<ChapterDetailProps> = () => {
                 }.`}</span>
                 <Link
                   to={`/v/${chapterTitle}/${createSlug(lesson.title)}`}
-                  className="hover:text-white hover:underline"
+                  className="hover:text-white hover:underline text-blue-500"
                 >
                   {lesson.title}
                 </Link>

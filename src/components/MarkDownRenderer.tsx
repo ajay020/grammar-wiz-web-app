@@ -29,14 +29,31 @@ const MarkdownRenderer: React.FC<PropType> = ({ articlePath }) => {
   }, [articlePath]);
 
   return (
-    <div className=" bg-gray-700 w-2/3">
+    <div className=" bg-slate-900 p-2">
       <ReactMarkdown
-        className={"bg-gray-600 prose max-w-full"}
+        className={" prose max-w-full text-gray-300"}
         remarkPlugins={[remarkGfm, rehypeHighlight]}
         components={{
           // Customize styles for specific elements
-          p: ({ node, ...props }) => <p className="text-red-200" {...props} />,
-          // Add more customized components as needed
+          p: ({ node, ...props }) => <p className="text-gray-300" {...props} />,
+          h1: ({ node, ...props }) => (
+            <h1 className="text-gray-300" {...props}>
+              {props.children}
+            </h1>
+          ),
+          h2: ({ node, ...props }) => (
+            <h2 className="text-gray-300" {...props}>
+              {props.children}
+            </h2>
+          ),
+          h3: ({ node, ...props }) => (
+            <h3 className="text-gray-300" {...props}>
+              {props.children}
+            </h3>
+          ),
+          strong: ({ children, ...props }) => (
+            <strong className="text-gray-300">{children}</strong>
+          ),
         }}
         children={markdownContent}
       ></ReactMarkdown>

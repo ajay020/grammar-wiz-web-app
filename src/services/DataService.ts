@@ -3,8 +3,18 @@ import { Chapter, Lesson, SubLesson } from "../types";
 
 export const fetchChapterByTitle = (chapterTitle: string): Chapter => {
   const chapter = chapters.find((chapter) => chapter.title === chapterTitle);
-  console.log({ chapter, chapterTitle });
   return chapter!;
+};
+
+export const fetchQuizzesForLessonTitle = (
+  chapterTitle: string,
+  lessonTitle: string
+) => {
+  const chapter = chapters.find((chapter) => chapter.title === chapterTitle);
+  const lesson = chapter?.lessons.find(
+    (lesson) => lesson.title === lessonTitle
+  );
+  return lesson?.quizzes || [];
 };
 
 export const fetchLessonForTitle = (chapterTitle: string): Lesson[] => {
@@ -19,8 +29,6 @@ export const fetchSublessonsByLessonTitle = (
   const foundLesson = fetchChapterByTitle(chapterTitle)?.lessons.find(
     (lesson) => lesson.title === lessonTitle
   );
-
-  console.log({ foundLesson });
 
   return foundLesson?.sublessons || [];
 };

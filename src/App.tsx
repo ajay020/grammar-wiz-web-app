@@ -6,11 +6,13 @@ import ChapterDetail from "./components/ChapterDetail";
 import LessonPage from "./pages/LessonPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Navbar from "./components/Navbar";
-import SubLessonDetail from "./pages/SubLessonDetail";
+import { ThemeProvider, useTheme } from "./theme/ThemeContext";
 
 const Layout = () => {
+  const { isDarkMode } = useTheme();
+  console.log(isDarkMode);
   return (
-    <div>
+    <div className={`${isDarkMode ? "dark" : ""}`}>
       <Navbar />
       <Outlet />
     </div>
@@ -19,19 +21,23 @@ const Layout = () => {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="c" element={<ChapterPage />}>
-          <Route path=":chapterTitle" element={<ChapterDetail />} />
-        </Route>
-        <Route
-          path="v/:chapterTitle/:lessonTitle"
-          element={<LessonPage />}
-        ></Route>
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <ThemeProvider>
+      <div>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="c" element={<ChapterPage />}>
+              <Route path=":chapterTitle" element={<ChapterDetail />} />
+            </Route>
+            <Route
+              path="v/:chapterTitle/:lessonTitle"
+              element={<LessonPage />}
+            ></Route>
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
 

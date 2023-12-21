@@ -25,14 +25,14 @@ const ChapterPage: React.FC<ChapterPageProps> = () => {
 
   return (
     <div className=" flex bg-slate-900  ">
-      <div className="bg-slate-700 w-1/5 h-screen p-4">
-        <h2>Chapters</h2>
-        <ul className="">
+      <div className="bg-gray-800 w-1/5 h-screen pl-6 pt-5">
+        <h2 className="text-gray-500 text-sm ">Chapters</h2>
+        <ul className="mt-4">
           {chapters.map((chapter) => (
             <li className="cursor-pointer mb-2" key={chapter.id}>
               <Link
                 to={`${createSlug(chapter.title)}`}
-                className="hover:text-white hover:underline"
+                className="text-white hover:text-blue-500 hover:underline"
               >
                 {chapter.title}
               </Link>

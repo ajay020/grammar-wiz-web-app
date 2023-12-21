@@ -11,11 +11,13 @@ const chapters = [
             id: "110",
             title: "Introduction",
             articlePath: "/data/PartOfSpeech/01nouns/introduction/article.md",
+            quizId: "q1",
           },
           {
             id: "112",
             title: "Types of Nouns",
             articlePath: "/data/PartOfSpeech/01nouns/types/article.md",
+            quizId: "q2",
           },
           {
             id: "123",
@@ -31,6 +33,54 @@ const chapters = [
             id: "125",
             title: "Singular and Plural",
             articlePath: "/articles/chapter1/lesson1.1/sublesson1.1.2.md",
+          },
+        ],
+        quizzes: [
+          {
+            id: "q1",
+            questions: [
+              {
+                id: "q1_1",
+                text: "What is a noun?",
+                correctOptionId: "1",
+                explanation: "A noun is a word that describes something.",
+                options: [
+                  {
+                    id: "1",
+                    text: "A noun is a word that describes something.",
+                    isCorrect: true,
+                  },
+                  {
+                    id: "2",
+                    text: "A noun is a word that doesn't describes something.",
+                    isCorrect: false,
+                  },
+                ],
+              },
+              {
+                id: "q1_2",
+                text: "What is noun in this sentence: 'He goes to school' ?",
+                correctOptionId: "1",
+                explanation: "A noun is a word that describes something.",
+                options: [
+                  {
+                    id: "1",
+                    text: "He",
+                    isCorrect: false,
+                  },
+                  {
+                    id: "2",
+                    text: "goes",
+                    isCorrect: false,
+                  },
+                  {
+                    id: "3",
+                    text: "School",
+                    isCorrect: true,
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
