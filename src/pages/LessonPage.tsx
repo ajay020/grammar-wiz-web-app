@@ -1,19 +1,21 @@
-import React, { useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { decodeSlug } from "../utils/utils";
 import {
   fetchQuizzesForLessonTitle,
   fetchSublessonsByLessonTitle,
 } from "../services/DataService";
-import { Lesson, Quiz, SubLesson } from "../types";
+import { Quiz, SubLesson } from "../types";
 import SubLessonDetail from "./SubLessonDetail";
+import { useTheme } from "../theme/ThemeContext";
 
 const LessonPage = () => {
   const { chapterTitle, lessonTitle } = useParams<{
     chapterTitle: string;
     lessonTitle: string;
   }>();
+  const { isDarkMode } = useTheme();
 
   let subLessons: SubLesson[] = [];
   let quizzes: Quiz[] = [];
@@ -39,14 +41,28 @@ const LessonPage = () => {
   };
 
   return (
-    <div className="flex bg-slate-900 h-screen">
+    <div className="flex h-screen">
       {/* Left side - SubLessonList */}
-      <div className="w-1/4 bg-gray-800 p-4 overflow-y-auto">
-        <h2 className="text-sm font-bold mb-4 text-gray-400"> SubLesson</h2>
+      <div
+        className={`w-1/4 bg-gray-50 pl-8 p-4 ${
+          isDarkMode ? "dark:bg-slate-800" : ""
+        }`}
+      >
+        <h2
+          className={` text-sm  mb-4 text-gray-500 ${
+            isDarkMode ? "dark:text-gray-500" : ""
+          }`}
+        >
+          Lesson navigation
+        </h2>
         <ul>
           {subLessons.map((subLesson) => (
             <li
-              className="cursor-pointer text-white hover:text-blue-500 mb-2"
+              className={` cursor-pointer text-black hover:text-blue-500 mb-2 text-sm hover:underline ${
+                isDarkMode
+                  ? "dark:text-slate-200 hover:text-blue-500 hover:underline"
+                  : ""
+              }`}
               key={subLesson.id}
               onClick={() => handleSubLessonSelect(subLesson)}
             >
@@ -57,7 +73,11 @@ const LessonPage = () => {
       </div>
 
       {/* Right side - SubLessonDetail */}
-      <div className="w-3/4 overflow-y-auto bg-slate-900">
+      <div
+        className={`w-3/4 overflow-y-auto bg-white ${
+          isDarkMode ? "dark:bg-slate-900" : ""
+        }`}
+      >
         {selectedSubLesson && (
           <SubLessonDetail
             subLessonData={selectedSubLesson}

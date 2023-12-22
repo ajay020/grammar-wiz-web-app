@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Quiz, SubLesson } from "../types";
 import MarkdownRenderer from "../components/MarkDownRenderer";
 import QuizComponent from "../components/QuizComponent";
+import { useTheme } from "../theme/ThemeContext";
 
 type PropType = {
   subLessonData: SubLesson;
@@ -11,14 +12,25 @@ type PropType = {
 
 const SubLessonDetail: React.FC<PropType> = ({ subLessonData, quizzes }) => {
   const [showQuiz, setShowQuiz] = useState(false);
+  const { isDarkMode } = useTheme();
 
   const toggleQuiz = () => {
     setShowQuiz(!showQuiz);
   };
 
   return (
-    <div className="flex flex-col w-3/4 mx-auto  bg-slate-900 mb-8">
-      <h1 className="text-white text-2xl mt-2 mb-4">{subLessonData.title}</h1>
+    <div
+      className={`flex flex-col w-3/4 mx-auto bg-white mb-8 ${
+        isDarkMode ? "dark:bg-slate-900" : ""
+      }`}
+    >
+      <h1
+        className={`text-black text-2xl mt-4 mb-4 ${
+          isDarkMode ? "text-slate-200" : ""
+        }`}
+      >
+        {subLessonData.title}
+      </h1>
       <MarkdownRenderer articlePath={subLessonData.articlePath} />
       <div className="w-full bg-slate-400 mt-5 h-px"></div>
 
@@ -31,7 +43,7 @@ const SubLessonDetail: React.FC<PropType> = ({ subLessonData, quizzes }) => {
             Quiz
           </button>
           {showQuiz && (
-            <div className=" w-3/4  bg-slate-800 rounded">
+            <div className=" w-3/4 rounded">
               <QuizComponent quizId={subLessonData?.quizId} quizzes={quizzes} />
             </div>
           )}

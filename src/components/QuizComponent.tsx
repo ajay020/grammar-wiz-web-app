@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Option, Quiz as QuizType } from "../types";
+import { useTheme } from "../theme/ThemeContext";
 
 interface QuizComponentProps {
   quizId: string;
@@ -12,6 +13,8 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [completedQuestions, setCompletedQuestions] = useState(0);
+
+  const { isDarkMode } = useTheme();
 
   // Filter the questions for the specified quizId
   const currentQuiz = quizzes.find((quiz) => quiz.id === quizId);
@@ -63,14 +66,21 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
     }
 
     return (
-      <div className="flex flex-col p-4 ">
-        <h2 className="text-white text-md mb-4">{currentQuestion.text}</h2>
+      <div className="flex flex-col p-4  ">
+        <h2
+          className={`text-black text-md mb-4 ${
+            isDarkMode ? "dark:text-slate-200" : ""
+          }`}
+        >
+          {currentQuestion.text}
+        </h2>
         <ul className="flex flex-col gap-3">
           {currentQuestion.options.map((option) => (
             <li
-              className={`text-white p-2
+              className={`text-black p-2
                border border-gray-400 rounded
-              hover:cursor-pointer
+               hover:cursor-pointer
+               ${isDarkMode ? "dark:text-slate-200" : ""}
              ${getStyleForOption(option)}
             `}
               key={option.id}
@@ -86,7 +96,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
           ))}
         </ul>
         <button
-          className="bg-blue-500 text-left hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-blue-500 text-left
+           hover:bg-blue-700 text-white
+            font-bold py-2 px-4 rounded mt-4"
           onClick={handleNextQuestion}
         >
           Next Question

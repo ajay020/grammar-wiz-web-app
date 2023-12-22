@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Chapter, Lesson } from "../types"; // Adjust the import path
 import { createSlug, decodeSlug } from "../utils/utils";
 import { fetchLessonForTitle } from "../services/DataService";
+import { useTheme } from "../theme/ThemeContext";
 
 interface ChapterDetailProps {
   //   chapter: Chapter;
@@ -11,6 +12,7 @@ interface ChapterDetailProps {
 
 const ChapterDetail: React.FC<ChapterDetailProps> = () => {
   const { chapterTitle } = useParams<{ chapterTitle: string }>();
+  const { isDarkMode } = useTheme();
 
   let lessons: Lesson[] = [];
 
@@ -19,29 +21,33 @@ const ChapterDetail: React.FC<ChapterDetailProps> = () => {
   }
 
   return (
-    <div className="  mt-5">
-      <div className="mx-auto">
-        {chapterTitle && (
-          <h1 className="text-white text-xl">{decodeSlug(chapterTitle)}</h1>
-        )}
-        <ul className="mt-4 p-2 border border-gray-600">
-          {lessons?.map((lesson, index) => (
-            <li key={lesson.id} className="mb-2">
-              <div className="flex">
-                <span className=" pr-2 text-sm text-gray-400">{`${
-                  index + 1
-                }.`}</span>
-                <Link
-                  to={`/v/${chapterTitle}/${createSlug(lesson.title)}`}
-                  className="hover:text-white hover:underline text-blue-500"
-                >
-                  {lesson.title}
-                </Link>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="mx-auto w-1/2 ">
+      {chapterTitle && (
+        <h1
+          className={`text-black text-xl mt-8 " ${
+            isDarkMode ? "dark:text-slate-200" : ""
+          }`}
+        >
+          {decodeSlug(chapterTitle)}
+        </h1>
+      )}
+      <ul className="mt-4 p-2 ">
+        {lessons?.map((lesson, index) => (
+          <li key={lesson.id} className="mb-4">
+            <div className="flex">
+              <span className=" pr-2 text-sm text-gray-400">{`${
+                index + 1
+              }.`}</span>
+              <Link
+                to={`/v/${chapterTitle}/${createSlug(lesson.title)}`}
+                className="hover:text-white hover:underline text-blue-500"
+              >
+                {lesson.title}
+              </Link>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
