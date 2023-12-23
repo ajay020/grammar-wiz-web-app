@@ -9,6 +9,7 @@ import {
 import { Quiz, SubLesson } from "../types";
 import SubLessonDetail from "./SubLessonDetail";
 import { useTheme } from "../theme/ThemeContext";
+import ToggleablePanel from "../components/ToggableLeftPanel";
 
 const LessonPage = () => {
   const { chapterTitle, lessonTitle } = useParams<{
@@ -42,12 +43,7 @@ const LessonPage = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Left side - SubLessonList */}
-      <div
-        className={`w-1/4 bg-gray-50 pl-8 p-4 ${
-          isDarkMode ? "dark:bg-slate-800" : ""
-        }`}
-      >
+      <ToggleablePanel>
         <h2
           className={` text-sm  mb-4 text-gray-500 ${
             isDarkMode ? "dark:text-gray-500" : ""
@@ -70,11 +66,11 @@ const LessonPage = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </ToggleablePanel>
 
       {/* Right side - SubLessonDetail */}
       <div
-        className={`w-3/4 overflow-y-auto bg-white ${
+        className={`w-full overflow-y-auto bg-white ${
           isDarkMode ? "dark:bg-slate-900" : ""
         }`}
       >

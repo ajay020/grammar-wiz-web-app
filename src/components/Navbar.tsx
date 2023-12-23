@@ -15,7 +15,7 @@ const Navbar = () => {
     <div>
       <nav
         className={`sticky top-0 bg-white border-gray-900 ${
-          isDarkMode ? "dark:bg-gray-900 dark:border-gray-100 " : ""
+          isDarkMode ? "dark:bg-gray-900 dark:border-gray-700 " : ""
         } p-4 border-b-2`}
       >
         <div className="container mx-auto flex justify-around  items-center ">
