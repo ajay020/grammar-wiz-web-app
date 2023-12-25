@@ -25,7 +25,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           <div key={chapter.id} className="">
             <Link to={`c/${createSlug(chapter.title)}`}>
               <h2
-                className={`hover:underline text-black ${
+                className={`hover:underline text-black text-lg my-2 ${
                   isDarkMode ? "dark:text-slate-200" : ""
                 }`}
               >
@@ -33,7 +33,7 @@ const HomePage: React.FC<HomePageProps> = () => {
               </h2>
             </Link>
             <ul className=" mt-2 flex flex-col flex-wrap">
-              {chapter.lessons.map((lesson, lessonIndex) => (
+              {chapter?.lessons?.map((lesson, lessonIndex) => (
                 <li key={lesson.id} className="mb-2">
                   <div className="">
                     <span className="text-white pr-2 text-sm">{`${

@@ -38,7 +38,7 @@ const ChapterPage: React.FC<ChapterPageProps> = () => {
         </ul>
       </ToggleablePanel>
       <div
-        className={` h-screen  bg-white w-full ${
+        className={` h-screen  bg-white w-full overflow-y-auto ${
           isDarkMode ? "dark:bg-slate-900" : ""
         }`}
       >

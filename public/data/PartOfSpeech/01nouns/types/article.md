@@ -1,5 +1,3 @@
-## Types of Nouns
-
 ### Common Nouns
 
 Common nouns are everyday items or general things. They aren't specific to a particular person, place, or thing.

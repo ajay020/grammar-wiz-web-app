@@ -3,8 +3,12 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Chapter, Lesson } from "../types"; // Adjust the import path
 import { createSlug, decodeSlug } from "../utils/utils";
-import { fetchLessonForTitle } from "../services/DataService";
+import {
+  fetchChapterByTitle,
+  fetchLessonForTitle,
+} from "../services/DataService";
 import { useTheme } from "../theme/ThemeContext";
+import MarkdownRenderer from "./MarkDownRenderer";
 
 interface ChapterDetailProps {
   //   chapter: Chapter;
@@ -15,9 +19,11 @@ const ChapterDetail: React.FC<ChapterDetailProps> = () => {
   const { isDarkMode } = useTheme();
 
   let lessons: Lesson[] = [];
+  let chapter: Chapter | null = null;
 
   if (chapterTitle) {
     lessons = fetchLessonForTitle(decodeSlug(chapterTitle));
+    chapter = fetchChapterByTitle(decodeSlug(chapterTitle));
   }
 
   return (
@@ -31,23 +37,25 @@ const ChapterDetail: React.FC<ChapterDetailProps> = () => {
           {decodeSlug(chapterTitle)}
         </h1>
       )}
-      <ul className="mt-4 p-2 ">
-        {lessons?.map((lesson, index) => (
-          <li key={lesson.id} className="mb-4">
-            <div className="flex">
-              <span className=" pr-2 text-sm text-gray-400">{`${
-                index + 1
-              }.`}</span>
-              <Link
-                to={`/v/${chapterTitle}/${createSlug(lesson.title)}`}
-                className="hover:text-white hover:underline text-blue-500"
-              >
-                {lesson.title}
-              </Link>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="">
+        <ul className="mt-4 p-2 ">
+          {lessons?.map((lesson, index) => (
+            <li key={lesson.id} className="mb-4">
+              <div className="flex">
+                <span className=" pr-2 text-sm text-gray-400">{`${
+                  index + 1
+                }.`}</span>
+                <Link
+                  to={`/v/${chapterTitle}/${createSlug(lesson.title)}`}
+                  className="hover:text-white hover:underline text-blue-500"
+                >
+                  {lesson.title}
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

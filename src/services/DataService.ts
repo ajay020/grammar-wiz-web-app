@@ -1,20 +1,24 @@
 import chapters from "../database/chapter";
-import { Chapter, Lesson, SubLesson } from "../types";
+import { Chapter, Lesson, Quiz, SubLesson } from "../types";
 
 export const fetchChapterByTitle = (chapterTitle: string): Chapter => {
   const chapter = chapters.find((chapter) => chapter.title === chapterTitle);
-  return chapter!;
+  return chapter || ({} as Chapter);
 };
 
 export const fetchQuizzesForLessonTitle = (
   chapterTitle: string,
   lessonTitle: string
 ) => {
-  const chapter = chapters.find((chapter) => chapter.title === chapterTitle);
-  const lesson = chapter?.lessons.find(
+  const chapter: Chapter | undefined = chapters.find(
+    (chapter) => chapter.title === chapterTitle
+  );
+  const lesson = chapter?.lessons?.find(
     (lesson) => lesson.title === lessonTitle
   );
-  return lesson?.quizzes || [];
+
+  if (!lesson) return [] as Quiz[];
+  return lesson?.quizzes || ([] as Quiz[]);
 };
 
 export const fetchLessonForTitle = (chapterTitle: string): Lesson[] => {
@@ -26,7 +30,7 @@ export const fetchSublessonsByLessonTitle = (
   chapterTitle: string,
   lessonTitle: string
 ): SubLesson[] => {
-  const foundLesson = fetchChapterByTitle(chapterTitle)?.lessons.find(
+  const foundLesson = fetchChapterByTitle(chapterTitle)?.lessons?.find(
     (lesson) => lesson.title === lessonTitle
   );
 

@@ -34,7 +34,8 @@ export interface Lesson {
 export interface Chapter {
   id: string;
   title: string;
-  lessons: Lesson[];
+  articlePath?: string;
+  lessons?: Lesson[];
 }
 
 export interface ChaptersData {
