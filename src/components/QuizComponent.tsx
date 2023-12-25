@@ -36,9 +36,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
 
   const getStyleForOption = (option: Option) => {
     if (selectedOptionId === option.id) {
-      return option.isCorrect ? "bg-green-600" : "bg-red-600";
+      return option.isCorrect ? "border-green-600" : "border-red-600";
     } else if (isAnswered && option.isCorrect) {
-      return "bg-green-600";
+      return "border-green-600";
     } else {
       return "";
     }
@@ -66,7 +66,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
     }
 
     return (
-      <div className="flex flex-col p-4  ">
+      <div className="flex flex-col">
         <h2
           className={`text-black text-md mb-4 ${
             isDarkMode ? "dark:text-slate-200" : ""
@@ -79,14 +79,14 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
             <li
               className={`text-black p-2
                border border-gray-400 rounded
-               hover:cursor-pointer
+               hover:cursor-pointer 
                ${isDarkMode ? "dark:text-slate-200" : ""}
              ${getStyleForOption(option)}
             `}
               key={option.id}
             >
               <button
-                className=" hover:text-blue-100 text-left w-full"
+                className=" hover:text-blue-800 text-left w-full"
                 disabled={isAnswered}
                 onClick={() => handleOptionClick(currentQuestion.id, option.id)}
               >
@@ -96,17 +96,21 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
           ))}
         </ul>
         <button
-          className="bg-blue-500 text-left
+          className="bg-blue-500 text-center
            hover:bg-blue-700 text-white
             font-bold py-2 px-4 rounded mt-4"
           onClick={handleNextQuestion}
         >
-          Next Question
+          Next
         </button>
       </div>
     );
   };
 
-  return <div className=" mb-8">{renderQuestion()}</div>;
+  return (
+    <div className={`bg-gray-100 ${isDarkMode ? "bg-gray-800" : ""}  p-4 mb-8`}>
+      {renderQuestion()}
+    </div>
+  );
 };
 export default QuizComponent;
