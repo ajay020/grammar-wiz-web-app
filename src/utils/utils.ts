@@ -1,10 +1,12 @@
 export const createSlug = (title: string) => {
-  return title.toLowerCase().replace(/\s+/g, "-");
+  return title.replace(/\s+/g, "_");
 };
 
 export const decodeSlug = (slug: string) => {
-  return slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  return (
+    slug
+      .split("_")
+      // .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ")
+  );
 };

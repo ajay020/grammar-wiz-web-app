@@ -20,7 +20,7 @@ const ToggleMenuButton: React.FC<ToggleMenuButtonProps> = ({ onClick }) => {
       >
         <FaBars
           size={22}
-          className={`text-gray-800 ${isDarkMode ? "text-gray-200" : ""}`}
+          className={`text-gray-800 ${isDarkMode ? "text-gray-100" : ""}`}
         />
       </button>
     </div>

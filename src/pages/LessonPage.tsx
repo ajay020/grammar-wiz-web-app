@@ -3,13 +3,15 @@ import { useParams } from "react-router-dom";
 
 import { decodeSlug } from "../utils/utils";
 import {
+  fetchLessonForTitle,
   fetchQuizzesForLessonTitle,
   fetchSublessonsByLessonTitle,
 } from "../services/DataService";
-import { Quiz, SubLesson } from "../types";
+import { Lesson, Quiz, SubLesson } from "../types";
 import SubLessonDetail from "./SubLessonDetail";
 import { useTheme } from "../theme/ThemeContext";
 import ToggleablePanel from "../components/ToggableLeftPanel";
+import LessonDetails from "../components/lessons/LessonDetails";
 
 const LessonPage = () => {
   const { chapterTitle, lessonTitle } = useParams<{
@@ -20,6 +22,7 @@ const LessonPage = () => {
 
   let subLessons: SubLesson[] = [];
   let quizzes: Quiz[] = [];
+  let lesson: Lesson | undefined = {} as Lesson;
 
   if (chapterTitle && lessonTitle) {
     const originalChapterTitle = decodeSlug(chapterTitle);
@@ -31,6 +34,8 @@ const LessonPage = () => {
       originalChapterTitle,
       originalLessonTitle
     );
+    lesson = fetchLessonForTitle(originalChapterTitle, originalLessonTitle);
+    console.log({ lesson }, originalChapterTitle, originalLessonTitle);
   }
 
   const [selectedSubLesson, setSelectedSubLesson] = useState<SubLesson>(
@@ -40,6 +45,26 @@ const LessonPage = () => {
   const handleSubLessonSelect = (subLesson: SubLesson) => {
     setSelectedSubLesson(subLesson);
   };
+
+  //   console.log({ lesson });
+
+  if (!subLessons || subLessons.length === 0) {
+    return (
+      <div className="flex min-h-screen">
+        <div
+          className={`w-full bg-white ${isDarkMode ? "dark:bg-slate-900" : ""}`}
+        >
+          <h1
+            className={`text-black text-2xl mt-4 mb-4 ${
+              isDarkMode ? "text-slate-200" : ""
+            }`}
+          >
+            {lesson && <LessonDetails lesson={lesson} />}
+          </h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen">

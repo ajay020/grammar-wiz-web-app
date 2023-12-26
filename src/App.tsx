@@ -7,6 +7,8 @@ import LessonPage from "./pages/LessonPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Navbar from "./components/Navbar";
 import { ThemeProvider, useTheme } from "./theme/ThemeContext";
+import QuizPage from "./pages/QuizPage";
+import PlayPage from "./pages/PlayPage";
 
 const Layout = () => {
   const { isDarkMode } = useTheme();
@@ -33,6 +35,8 @@ function App() {
               path="v/:chapterTitle/:lessonTitle"
               element={<LessonPage />}
             ></Route>
+            <Route path="quiz" element={<QuizPage />} />
+            <Route path="/play" element={<PlayPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

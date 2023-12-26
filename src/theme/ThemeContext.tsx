@@ -27,7 +27,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("darkMode", isDarkMode ? "true" : "false");
     const storedPreference = localStorage.getItem("darkMode");
-    console.log({ storedPreference });
+    // console.log({ storedPreference });
   }, [isDarkMode]);
 
   const toggleTheme = () => {

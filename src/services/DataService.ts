@@ -21,9 +21,22 @@ export const fetchQuizzesForLessonTitle = (
   return lesson?.quizzes || ([] as Quiz[]);
 };
 
-export const fetchLessonForTitle = (chapterTitle: string): Lesson[] => {
+export const fetchLessonsForTitle = (chapterTitle: string): Lesson[] => {
   const chapter = chapters.find((chapter) => chapter.title === chapterTitle);
   return chapter?.lessons || [];
+};
+
+export const fetchLessonForTitle = (
+  chapterTitle: string,
+  lessonTitle: string
+) => {
+  const chapter: Chapter | undefined = chapters.find(
+    (chapter) => chapter.title === chapterTitle
+  );
+  const lesson = chapter?.lessons?.find(
+    (lesson) => lesson.title === lessonTitle
+  );
+  return lesson;
 };
 
 export const fetchSublessonsByLessonTitle = (

@@ -27,7 +27,8 @@ export interface SubLesson {
 export interface Lesson {
   id: string;
   title: string;
-  sublessons: SubLesson[];
+  articlePath?: string;
+  sublessons?: SubLesson[];
   quizzes?: Quiz[];
 }
 

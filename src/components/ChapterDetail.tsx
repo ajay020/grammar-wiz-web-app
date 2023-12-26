@@ -5,7 +5,7 @@ import { Chapter, Lesson } from "../types"; // Adjust the import path
 import { createSlug, decodeSlug } from "../utils/utils";
 import {
   fetchChapterByTitle,
-  fetchLessonForTitle,
+  fetchLessonsForTitle,
 } from "../services/DataService";
 import { useTheme } from "../theme/ThemeContext";
 import MarkdownRenderer from "./MarkDownRenderer";
@@ -22,7 +22,7 @@ const ChapterDetail: React.FC<ChapterDetailProps> = () => {
   let chapter: Chapter | null = null;
 
   if (chapterTitle) {
-    lessons = fetchLessonForTitle(decodeSlug(chapterTitle));
+    lessons = fetchLessonsForTitle(decodeSlug(chapterTitle));
     chapter = fetchChapterByTitle(decodeSlug(chapterTitle));
   }
 
