@@ -29,7 +29,7 @@ const SubLessonDetail: React.FC<PropType> = ({ subLessonData, quizzes }) => {
           isDarkMode ? "text-slate-200" : ""
         }`}
       >
-        {subLessonData.title}
+        {/* {subLessonData.title} */}
       </h1>
       <MarkdownRenderer articlePath={subLessonData.articlePath} />
       <div className="w-full bg-slate-400 mt-5 h-px"></div>

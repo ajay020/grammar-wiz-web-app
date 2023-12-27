@@ -136,29 +136,30 @@ const chapters = [
         title: "Verb",
         sublessons: [
           {
-            id: "20",
+            id: "30",
             title: "Introducton",
-            articlePath: "/data/PartOfSpeech/02verbs/0intro/article.md",
+            articlePath: "/data/PartOfSpeech/02Verbs/Intro/article.md",
           },
           {
-            id: "21",
+            id: "31",
             title: "Types of verbs",
-            articlePath: "/data/PartOfSpeech/02verbs/typesOfVerb.md",
+            articlePath: "/data/PartOfSpeech/02Verbs/Types/article.md",
           },
           {
-            id: "22",
+            id: "32",
             title: "Verb tenses",
-            articlePath: "/data/PartOfSpeech/02verbs/verbTenses.md",
+            articlePath: "/data/PartOfSpeech/02Verbs/VerbTense/article.md",
           },
           {
-            id: "23",
+            id: "33",
             title: "Subject-Verb Agreement",
-            articlePath: "/data/PartOfSpeech/02verbs/subjectVerbAgreement.md",
+            articlePath:
+              "/data/PartOfSpeech/02Verbs/SubjectVerbAgreement/article.md",
           },
           {
-            id: "24",
+            id: "34",
             title: "Irregular Verbs",
-            articlePath: "/data/PartOfSpeech/02verbs/irregularVerb/article.md",
+            articlePath: "/data/PartOfSpeech/02Verbs/IrregularVerb/article.md",
           },
         ],
       },
@@ -194,54 +195,54 @@ const chapters = [
           },
         ],
       },
-      {
-        id: "6",
-        title: "Preposition",
-        sublessons: [
-          {
-            id: "1003",
-            title: "Sublesson 1.2.1",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
-          },
-          {
-            id: "1004",
-            title: "Sublesson 1.2.2",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
-          },
-        ],
-      },
-      {
-        id: "7",
-        title: "Conjunction",
-        sublessons: [
-          {
-            id: "1003",
-            title: "Sublesson 1.2.1",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
-          },
-          {
-            id: "1004",
-            title: "Sublesson 1.2.2",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
-          },
-        ],
-      },
-      {
-        id: "8",
-        title: "Interjection",
-        sublessons: [
-          {
-            id: "1003",
-            title: "Sublesson 1.2.1",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
-          },
-          {
-            id: "1004",
-            title: "Sublesson 1.2.2",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
-          },
-        ],
-      },
+      //   {
+      //     id: "6",
+      //     title: "Preposition",
+      //     sublessons: [
+      //       {
+      //         id: "1003",
+      //         title: "Sublesson 1.2.1",
+      //         articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
+      //       },
+      //       {
+      //         id: "1004",
+      //         title: "Sublesson 1.2.2",
+      //         articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     id: "7",
+      //     title: "Conjunction",
+      //     sublessons: [
+      //       {
+      //         id: "1003",
+      //         title: "Sublesson 1.2.1",
+      //         articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
+      //       },
+      //       {
+      //         id: "1004",
+      //         title: "Sublesson 1.2.2",
+      //         articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     id: "8",
+      //     title: "Interjection",
+      //     sublessons: [
+      //       {
+      //         id: "1003",
+      //         title: "Sublesson 1.2.1",
+      //         articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
+      //       },
+      //       {
+      //         id: "1004",
+      //         title: "Sublesson 1.2.2",
+      //         articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
+      //       },
+      //     ],
+      //   },
     ],
   },
   {
