@@ -44,7 +44,7 @@ const SubLessonDetail: React.FC<PropType> = ({ subLessonData, quizzes }) => {
           </button>
           {showQuiz && (
             <div className=" w-3/4 rounded">
-              <QuizComponent quizId={subLessonData?.quizId} quizzes={quizzes} />
+              {/* <QuizComponent quizId={subLessonData?.quizId} quizzes={quizzes} /> */}
             </div>
           )}
         </>

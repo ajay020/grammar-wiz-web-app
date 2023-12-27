@@ -42,3 +42,9 @@ export interface Chapter {
 export interface ChaptersData {
   chapters: Chapter[];
 }
+
+export type ProgressQuestionType = {
+  id: string;
+  isCorrect: boolean;
+  isSolved: boolean;
+};

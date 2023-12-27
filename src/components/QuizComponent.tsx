@@ -1,33 +1,59 @@
 import React, { useState } from "react";
-import { Option, Quiz as QuizType } from "../types";
+import {
+  Option,
+  ProgressQuestionType,
+  Question,
+  Quiz as QuizType,
+} from "../types";
 import { useTheme } from "../theme/ThemeContext";
+import QuizProgress from "./QuizProgress";
 
 interface QuizComponentProps {
-  quizId: string;
-  quizzes: QuizType[];
+  quiz: QuizType;
 }
 
-const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
+const initialize = (questions: Question[]) => {
+  let arr = Array.from({ length: questions.length }).map((_, i) => {
+    return {
+      id: questions[i].id,
+      isCorrect: false,
+      isSolved: false,
+    };
+  });
+  return arr;
+};
+
+const QuizComponent: React.FC<QuizComponentProps> = ({ quiz }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [completedQuestions, setCompletedQuestions] = useState(0);
 
+  const questions = quiz?.questions ?? [];
+  const currentQuestion = questions[currentQuestionIndex];
+
+  const [takenQuestions, setTakenQuestions] = useState<ProgressQuestionType[]>(
+    () => initialize(questions)
+  );
+
   const { isDarkMode } = useTheme();
 
-  // Filter the questions for the specified quizId
-  const currentQuiz = quizzes.find((quiz) => quiz.id === quizId);
-  const currentQuestions = currentQuiz?.questions ?? [];
-  const currentQuestion = currentQuestions[currentQuestionIndex];
-
-  if (!currentQuiz) {
-    return null;
-  }
   const handleOptionClick = (questionId: string, optionId: string) => {
     setSelectedOptionId(optionId);
     setIsAnswered(true);
     setCompletedQuestions(completedQuestions + 1);
+
+    const updatedQuestions = takenQuestions.map(
+      (question: ProgressQuestionType) => {
+        if (question.id === questionId) {
+          const isCorrect = optionId === currentQuestion?.correctOptionId;
+          return { ...question, isCorrect, isSolved: true };
+        }
+        return question;
+      }
+    );
+    setTakenQuestions(updatedQuestions);
 
     if (optionId === currentQuestion?.correctOptionId) {
       setScore(score + 1);
@@ -51,15 +77,15 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
   };
 
   const renderQuestion = () => {
-    if (currentQuestionIndex >= currentQuiz.questions.length) {
+    if (currentQuestionIndex >= questions.length) {
       return (
         <div className="text-white text-center">
           <h2 className="text-2xl"> Quiz Completed!</h2>
           <p>
-            Your score is: {score} / {quizzes[0].questions.length}
+            Your score is: {score} / {questions.length}
           </p>
           {/* <p>
-            Progress: {completedQuestions}/{currentQuestions.length}
+            Progress: {completedQuestions}/{questions.length}
           </p> */}
         </div>
       );
@@ -67,6 +93,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizId, quizzes }) => {
 
     return (
       <div className="flex flex-col">
+        <QuizProgress takenQuestions={takenQuestions} />
         <h2
           className={`text-black text-md mb-4 ${
             isDarkMode ? "dark:text-slate-200" : ""
