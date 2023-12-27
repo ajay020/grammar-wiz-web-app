@@ -108,14 +108,26 @@ const chapters = [
         title: "Pronoun",
         sublessons: [
           {
-            id: "1003",
-            title: "Sublesson 1.2.1",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
+            id: "20",
+            title: "Introduction",
+            articlePath:
+              "/data/PartOfSpeech/03Pronouns/Introduction/article.md",
           },
           {
-            id: "1004",
-            title: "Sublesson 1.2.2",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
+            id: "21",
+            title: "Types of Pronouns",
+            articlePath: "/data/PartOfSpeech/03Pronouns/Types/article.md",
+          },
+          {
+            id: "22",
+            title: "Possessive and Reflexive Pronouns",
+            articlePath:
+              "/data/PartOfSpeech/03Pronouns/PossessiveReflexive/article.md",
+          },
+          {
+            id: "23",
+            title: "Relative Pronouns",
+            articlePath: "/data/PartOfSpeech/03Pronouns/Relative/article.md",
           },
         ],
       },

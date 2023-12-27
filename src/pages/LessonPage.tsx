@@ -50,7 +50,7 @@ const LessonPage = () => {
 
   if (!subLessons || subLessons.length === 0) {
     return (
-      <div className="flex min-h-screen">
+      <div className="flex">
         <div
           className={`w-full bg-white ${isDarkMode ? "dark:bg-slate-900" : ""}`}
         >
@@ -67,7 +67,7 @@ const LessonPage = () => {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex bg-gray-800 ">
       <ToggleablePanel>
         <h2
           className={` text-sm  mb-4 text-gray-500 ${
@@ -92,10 +92,9 @@ const LessonPage = () => {
           ))}
         </ul>
       </ToggleablePanel>
-
       {/* Right side - SubLessonDetail */}
       <div
-        className={`w-full overflow-y-auto bg-white ${
+        className={`w-full overflow-y-auto h-screen bg-white ${
           isDarkMode ? "dark:bg-slate-900" : ""
         }`}
       >

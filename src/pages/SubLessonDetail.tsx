@@ -20,7 +20,7 @@ const SubLessonDetail: React.FC<PropType> = ({ subLessonData, quizzes }) => {
 
   return (
     <div
-      className={`flex flex-col w-3/4 mx-auto bg-white mb-8 ${
+      className={`flex overflow-auto flex-col w-3/4 mx-auto bg-white mb-8 ${
         isDarkMode ? "dark:bg-slate-900" : ""
       }`}
     >
