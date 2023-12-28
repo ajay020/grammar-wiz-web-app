@@ -169,13 +169,14 @@ const chapters = [
         sublessons: [
           {
             id: "1003",
-            title: "Sublesson 1.2.1",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
+            title: "Introduction",
+            articlePath:
+              "/data/PartOfSpeech/04Adjectives/Introduction/article.md",
           },
           {
             id: "1004",
-            title: "Sublesson 1.2.2",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
+            title: "Types of Adjectives",
+            articlePath: "/data/PartOfSpeech/04Adjectives/Types/article.md",
           },
         ],
       },
@@ -185,13 +186,13 @@ const chapters = [
         sublessons: [
           {
             id: "1003",
-            title: "Sublesson 1.2.1",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.1.md",
+            title: "Introduction",
+            articlePath: "/data/PartOfSpeech/05Adverbs/Introduction/article.md",
           },
           {
             id: "1004",
-            title: "Sublesson 1.2.2",
-            articlePath: "/articles/chapter1/lesson1.2/sublesson1.2.2.md",
+            title: "Types of Adverbs",
+            articlePath: "/data/PartOfSpeech/05Adverbs/Types/article.md",
           },
         ],
       },
