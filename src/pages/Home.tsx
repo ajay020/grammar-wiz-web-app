@@ -34,7 +34,7 @@ const HomePage: React.FC<HomePageProps> = () => {
             ) : (
               <Link to={`#`}>
                 <h2
-                  className={`hover:underline text-gray-500 font-bold text-lg my-2 ${
+                  className={`hover:cursor-not-allowed text-gray-500 font-bold text-lg my-2 ${
                     isDarkMode ? "dark:text-slate-500" : ""
                   }`}
                 >
