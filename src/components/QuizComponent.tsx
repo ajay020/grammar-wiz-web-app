@@ -93,7 +93,6 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quiz }) => {
 
     return (
       <div className="flex flex-col">
-        <QuizProgress takenQuestions={takenQuestions} />
         <h2
           className={`text-black text-md mb-4 ${
             isDarkMode ? "dark:text-slate-200" : ""
@@ -122,14 +121,18 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quiz }) => {
             </li>
           ))}
         </ul>
-        <button
-          className="bg-blue-500 text-center
+        <div className={`flex justify-between items-center mt-4`}>
+          <QuizProgress takenQuestions={takenQuestions} />
+
+          <button
+            className="bg-blue-500 text-center
            hover:bg-blue-700 text-white
-            font-bold py-2 px-4 rounded mt-4"
-          onClick={handleNextQuestion}
-        >
-          Next
-        </button>
+            font-bold py-2 px-4 rounded "
+            onClick={handleNextQuestion}
+          >
+            Next
+          </button>
+        </div>
       </div>
     );
   };
