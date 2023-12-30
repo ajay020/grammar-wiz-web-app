@@ -1,13 +1,15 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 import { useTheme } from "../theme/ThemeContext";
 
 const Navbar = () => {
+  const [activeLink, setActiveLink] = useState("/");
+
   const { isDarkMode, toggleTheme } = useTheme();
 
-  const linkTextStyles = `text-slate-900 text-md hover:text-blue-500 ${
+  const linkTextStyles = `text-slate-900 text-md hover:text-blue-500 hover:underline ${
     isDarkMode ? "dark:text-slate-200 " : ""
   }`;
 
@@ -31,13 +33,31 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <ul className="flex items-center space-x-4">
-            <li className={`${linkTextStyles}`}>
+            <li
+              className={`${linkTextStyles} ${
+                activeLink === "/" &&
+                "underline text-blue-600 dark:text-blue-300 font-bold"
+              }`}
+              onClick={() => setActiveLink("/")}
+            >
               <Link to="/">Home</Link>
             </li>
-            <li className={`${linkTextStyles}`}>
+            <li
+              className={`${linkTextStyles} ${
+                activeLink === "/quiz" &&
+                "underline text-blue-600 dark:text-blue-300 font-bold"
+              }`}
+              onClick={() => setActiveLink("/quiz")}
+            >
               <Link to="/quiz">Quiz</Link>
             </li>
-            <li className={`${linkTextStyles}`}>
+            <li
+              className={`${linkTextStyles} ${
+                activeLink === "/play" &&
+                "underline text-blue-600 dark:text-blue-300 font-bold"
+              }`}
+              onClick={() => setActiveLink("/play")}
+            >
               <Link to="/play">Play</Link>
             </li>
           </ul>
