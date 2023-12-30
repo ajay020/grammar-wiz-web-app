@@ -30,7 +30,7 @@ const QuizProgress: React.FC<QuizProgressProps> = ({ takenQuestions }) => {
   ));
 
   return (
-    <div className="flex items-center justify-center gap-4 w-full bg-slate-800 py-2">
+    <div className="flex items-center justify-center gap-4 w-full py-2">
       {circles}
     </div>
   );

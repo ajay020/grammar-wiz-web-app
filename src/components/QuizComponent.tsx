@@ -7,6 +7,8 @@ import {
 } from "../types";
 import { useTheme } from "../theme/ThemeContext";
 import QuizProgress from "./QuizProgress";
+import Button from "./common/Button";
+import QuizResult from "./QuizResult";
 
 interface QuizComponentProps {
   quiz: QuizType;
@@ -76,23 +78,30 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quiz }) => {
     setIsAnswered(false); // Reset question answered state
   };
 
+  const tryAgain = () => {
+    setCurrentQuestionIndex(0);
+    setSelectedOptionId(null);
+    setIsAnswered(false);
+    setScore(0);
+    setCompletedQuestions(0);
+    setTakenQuestions(initialize(questions));
+  };
+
   const renderQuestion = () => {
     if (currentQuestionIndex >= questions.length) {
       return (
-        <div className="text-white text-center">
-          <h2 className="text-2xl"> Quiz Completed!</h2>
-          <p>
-            Your score is: {score} / {questions.length}
-          </p>
-          {/* <p>
-            Progress: {completedQuestions}/{questions.length}
-          </p> */}
-        </div>
+        <QuizResult
+          score={score}
+          totalQuestions={questions.length}
+          onTryAgain={tryAgain}
+        />
       );
     }
 
     return (
-      <div className="flex flex-col">
+      <div
+        className={`bg-gray-100 ${isDarkMode ? "bg-gray-800" : ""}  p-4 mb-8`}
+      >
         <h2
           className={`text-black text-md mb-4 ${
             isDarkMode ? "dark:text-slate-200" : ""
@@ -121,26 +130,19 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quiz }) => {
             </li>
           ))}
         </ul>
-        <div className={`flex justify-between items-center mt-4`}>
-          <QuizProgress takenQuestions={takenQuestions} />
+        <div className={`flex justify-end items-center mt-4`}>
+          <div className="mr-4">
+            <QuizProgress takenQuestions={takenQuestions} />
+          </div>
 
-          <button
-            className="bg-blue-500 text-center
-           hover:bg-blue-700 text-white
-            font-bold py-2 px-4 rounded "
-            onClick={handleNextQuestion}
-          >
+          <Button className="font-bold shadow-sm" onClick={handleNextQuestion}>
             Next
-          </button>
+          </Button>
         </div>
       </div>
     );
   };
 
-  return (
-    <div className={`bg-gray-100 ${isDarkMode ? "bg-gray-800" : ""}  p-4 mb-8`}>
-      {renderQuestion()}
-    </div>
-  );
+  return <div className={""}>{renderQuestion()}</div>;
 };
 export default QuizComponent;
