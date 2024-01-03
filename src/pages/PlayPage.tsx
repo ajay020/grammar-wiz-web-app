@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "../theme/ThemeContext";
-import Game from "../components/game/Game";
+import ScrambleGame from "../components/game/ScrableGame";
 
 const PlayPage = () => {
   const { isDarkMode } = useTheme();
@@ -19,7 +19,7 @@ const PlayPage = () => {
         Word Scramble
       </h1>
       <div className="mt-5 w-full">
-        <Game />
+        <ScrambleGame />
       </div>
     </div>
   );

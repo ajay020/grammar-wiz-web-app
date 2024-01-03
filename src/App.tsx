@@ -12,7 +12,6 @@ import PlayPage from "./pages/PlayPage";
 
 const Layout = () => {
   const { isDarkMode } = useTheme();
-  console.log(isDarkMode);
   return (
     <div className={`${isDarkMode ? "dark" : ""}`}>
       <Navbar />

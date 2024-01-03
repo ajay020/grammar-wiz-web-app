@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WordBlock from "./WordBlock";
+
 import Button from "../common/Button";
 import { useTheme } from "../../theme/ThemeContext";
 
@@ -19,16 +19,29 @@ const ScrambledWords: React.FC<ScrambledWordsProps> = ({
   scrambledWords,
   onWordClick,
 }) => {
+  const getRandomColor = () => {
+    const colors = [
+      "bg-blue-500",
+      "bg-green-500",
+      "bg-yellow-500",
+      "bg-pink-500",
+      "bg-purple-500",
+      "bg-teal-500",
+      "bg-orange-500",
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
   return (
     <div className="mt-12 flex items-center  gap-4 justify-center flex-wrap">
       {scrambledWords.map((word, index) => (
-        <WordBlock
-          key={word}
-          word={word}
-          onClick={() => {
-            onWordClick(index);
-          }}
-        />
+        <div
+          key={index}
+          onClick={() => onWordClick(index)}
+          className={`${getRandomColor()} mr-4 p-3 font-bold text-lg 
+          rounded cursor-pointer text-white`}
+        >
+          {word}
+        </div>
       ))}
     </div>
   );
@@ -43,7 +56,10 @@ const SentenceDisplay: React.FC<SentenceDisplayProps> = ({
   userSentence,
   onWordClick,
 }) => (
-  <div className="flex flex-wrap items-center w-full gap-4 px-2 bg-gray-700 justify-start rounded-md py-8">
+  <div
+    className="flex flex-wrap items-center w-full gap-4 px-2
+   bg-gray-700 justify-start rounded-md py-8"
+  >
     {userSentence.map((word, index) => (
       <div
         key={index}
@@ -62,7 +78,7 @@ const SentenceDisplay: React.FC<SentenceDisplayProps> = ({
   </div>
 );
 
-const Game = () => {
+const ScrambleGame = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scrambledWords, setScrambledWords] = useState<string[]>([]); // Shuffled word order
   const [userSentence, setUserSentence] = useState<string[]>([]); // User's current arrangement
@@ -74,21 +90,26 @@ const Game = () => {
   useEffect(() => {
     // Fetch a new sentence and shuffle its words
     const sentence = sentences[currentIndex].text;
-    setScrambledWords(sentence.split(" ").sort(() => Math.random() - 0.5));
-    let arr: string[] = Array.from<string>({
-      length: sentence.split(" ").length,
-    }).fill("");
-    setUserSentence(arr);
+    const shuffledWords = sentence.split(" ").sort(() => Math.random() - 0.5);
+    setScrambledWords(shuffledWords);
+    setUserSentence(Array.from({ length: shuffledWords.length }, () => ""));
   }, [currentIndex]);
 
-  const scrambledWordClickHandler = (index: number) => {
-    const word = scrambledWords[index];
+  const wordClickHandler = (index: number, isScrambled: boolean) => {
+    const word = isScrambled ? scrambledWords[index] : userSentence[index];
     const newSentence = [...userSentence];
-    let idx = newSentence.findIndex((w) => w === "");
-    newSentence[idx] = word;
-    setUserSentence(newSentence);
 
-    setScrambledWords(scrambledWords.filter((w) => w !== word));
+    if (isScrambled) {
+      const emptyIndex = newSentence.findIndex((w) => w === "");
+      newSentence[emptyIndex] = word;
+
+      setScrambledWords(scrambledWords.filter((w) => w !== word));
+    } else {
+      newSentence[index] = "";
+      setScrambledWords([...scrambledWords, word]);
+    }
+
+    setUserSentence(newSentence);
 
     if (newSentence.join(" ") === sentences[currentIndex].text) {
       setScore(score + 1);
@@ -96,23 +117,13 @@ const Game = () => {
     }
   };
 
-  const userWordClickHandler = (index: number) => {
-    const word = userSentence[index];
-    const newSentence = [...userSentence];
-    newSentence[index] = "";
-    setUserSentence(newSentence);
-    setScrambledWords([...scrambledWords, word]);
-  };
-
   const nextSentence = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % sentences.length);
     setUserSentence(
       Array.from<string>({ length: scrambledWords.length }).fill("")
     );
-    // setScore(0);
     setIsCorrect(false);
     setScrambledWords(scrambledWords.sort(() => Math.random() - 0.5));
-    // Reset the userSentence array
   };
 
   const tryAgain = () => {
@@ -121,9 +132,14 @@ const Game = () => {
     setUserSentence(
       Array.from<string>({ length: sentence.split(" ").length }).fill("")
     );
-    // setScore(0);
-    setIsCorrect(false);
-    setCurrentIndex(currentIndex);
+  };
+
+  const handleButtonClick = () => {
+    if (isCorrect) {
+      nextSentence();
+    } else {
+      tryAgain();
+    }
   };
 
   const displayResult = () => {
@@ -138,24 +154,50 @@ const Game = () => {
                 </h1>
                 <p className="mb-3">Amazing! You got it right!</p>
                 <p className="mb-3">Score: {score}</p>
-
-                <Button className="" onClick={nextSentence}>
-                  Next Sentence
-                </Button>
               </>
             ) : (
-              <>
-                <p className="mb-3">That's not correct. Try again.</p>
-                <Button className="" onClick={tryAgain}>
-                  Try Again
-                </Button>
-              </>
+              <p className="mb-3">That's not correct. Try again.</p>
             )}
+            <Button onClick={handleButtonClick}>
+              {isCorrect ? "Next Sentence" : "Try Again"}
+            </Button>
           </div>
         </div>
       );
     }
+    return null;
   };
+
+  //   const displayResult = () => {
+  //     if (scrambledWords.length === 0) {
+  //       return (
+  //         <div className="container bg-white p-4 w-[400px] shadow-md rounded-md">
+  //           <div className="mt-3">
+  //             {isCorrect ? (
+  //               <>
+  //                 <h1 className="text-gray-800 mb-3">
+  //                   {sentences[currentIndex].text}
+  //                 </h1>
+  //                 <p className="mb-3">Amazing! You got it right!</p>
+  //                 <p className="mb-3">Score: {score}</p>
+
+  //                 <Button className="" onClick={nextSentence}>
+  //                   Next Sentence
+  //                 </Button>
+  //               </>
+  //             ) : (
+  //               <>
+  //                 <p className="mb-3">That's not correct. Try again.</p>
+  //                 <Button className="" onClick={tryAgain}>
+  //                   Try Again
+  //                 </Button>
+  //               </>
+  //             )}
+  //           </div>
+  //         </div>
+  //       );
+  //     }
+  //   };
 
   return (
     <div className="w-1/2 mx-auto flex flex-col items-center justify-center">
@@ -168,11 +210,11 @@ const Game = () => {
           <div className="mt-3 w-full">
             <SentenceDisplay
               userSentence={userSentence}
-              onWordClick={userWordClickHandler}
+              onWordClick={(index) => wordClickHandler(index, false)}
             />
             <ScrambledWords
               scrambledWords={scrambledWords}
-              onWordClick={scrambledWordClickHandler}
+              onWordClick={(index) => wordClickHandler(index, true)}
             />
           </div>
         </div>
@@ -182,4 +224,4 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default ScrambleGame;
