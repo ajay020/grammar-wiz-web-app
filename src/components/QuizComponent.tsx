@@ -131,11 +131,14 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quiz }) => {
           ))}
         </ul>
         <div className={`flex justify-end items-center mt-4`}>
-          <div className="mr-4">
+          <div className="mr-2 md:mr-4">
             <QuizProgress takenQuestions={takenQuestions} />
           </div>
 
-          <Button className="font-bold shadow-sm" onClick={handleNextQuestion}>
+          <Button
+            className="md:font-bold text-white p-1 shadow-sm"
+            onClick={handleNextQuestion}
+          >
             Next
           </Button>
         </div>

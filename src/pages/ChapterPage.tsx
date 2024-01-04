@@ -1,20 +1,13 @@
 // components/ChapterPage.js
-import React, { useState } from "react";
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
 
 import { createSlug } from "../utils/utils";
 import chapters from "../database/chapter";
-import { Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useTheme } from "../theme/ThemeContext";
-import { FaBars } from "react-icons/fa6";
-import ToggleMenuButton from "../components/common/ToggleMenuButton";
 import ToggleablePanel from "../components/ToggableLeftPanel";
 
-interface ChapterPageProps {
-  //   chapters: ChaptersData["chapters"];
-}
-
-const ChapterPage: React.FC<ChapterPageProps> = () => {
+const ChapterPage = () => {
   const { isDarkMode } = useTheme();
 
   return (
@@ -24,10 +17,10 @@ const ChapterPage: React.FC<ChapterPageProps> = () => {
 
         <ul className={`mt-4`}>
           {chapters.map((chapter) => (
-            <li className="cursor-pointer mb-2" key={chapter.id}>
+            <li className="cursor-pointer mb-1 md:mb-2" key={chapter.id}>
               <Link
                 to={`${createSlug(chapter.title)}`}
-                className={`text-black hover:text-blue-500 hover:underline ${
+                className={`text-black text-sm md:text-md lg:text-lg hover:text-blue-500 hover:underline ${
                   isDarkMode ? "dark:text-slate-200" : ""
                 }`}
               >

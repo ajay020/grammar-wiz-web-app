@@ -70,7 +70,7 @@ const LessonPage = () => {
     <div className="flex bg-gray-800 ">
       <ToggleablePanel>
         <h2
-          className={` text-sm  mb-4 text-gray-500 ${
+          className={` text-sm mb-4 text-gray-400 ${
             isDarkMode ? "dark:text-gray-500" : ""
           }`}
         >
@@ -79,10 +79,8 @@ const LessonPage = () => {
         <ul>
           {subLessons.map((subLesson) => (
             <li
-              className={` cursor-pointer text-black hover:text-blue-500 mb-2 text-sm hover:underline ${
-                isDarkMode
-                  ? "dark:text-slate-200 hover:text-blue-500 hover:underline"
-                  : ""
+              className={` cursor-pointer text-black hover:text-blue-500 mb-1 md:mb-2 text-sm md:text-md hover:underline ${
+                isDarkMode ? "dark:text-slate-100" : ""
               }`}
               key={subLesson.id}
               onClick={() => handleSubLessonSelect(subLesson)}

@@ -42,7 +42,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 </h2>
               </Link>
             )}
-            <ul className="mt-4 grid grid-cols-3 gap-1">
+            <ul className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-1">
               {chapter?.lessons?.map((lesson, lessonIndex) => (
                 <li key={lesson.id} className="mb-2">
                   <div className="">

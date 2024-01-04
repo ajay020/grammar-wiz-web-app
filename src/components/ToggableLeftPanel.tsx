@@ -19,14 +19,18 @@ const ToggleablePanel: React.FC<ToggleablePanelProps> = ({ children }) => {
     <>
       <div
         className={` bg-gray-100 h-screen transition-all duration-300  ${
-          showPanel ? "w-1/4 pl-8 pr-4" : "w-0 pl-0"
+          showPanel ? "w-1/4 pl-2 md:pl-4 lg:pl-8 pr-2 md:pr-4" : "w-0 pl-0"
         } ${isDarkMode ? "dark:bg-slate-800" : ""}`}
       >
         {/* Content of the panel */}
         {children}
       </div>
       {/* Your toggle button */}
-      <div className={`bg-white pl-5 ${isDarkMode ? "dark:bg-slate-900" : ""}`}>
+      <div
+        className={`bg-white pl-2 md:pl-4 ${
+          isDarkMode ? "dark:bg-slate-900" : ""
+        }`}
+      >
         <ToggleMenuButton onClick={togglePanel} />
       </div>
     </>

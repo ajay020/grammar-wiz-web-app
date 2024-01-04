@@ -31,13 +31,21 @@ const ScrambledWords: React.FC<ScrambledWordsProps> = ({
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   };
+
+  const [wordColors, setWordColors] = useState<string[]>(() =>
+    scrambledWords.map(() => getRandomColor())
+  );
+
   return (
-    <div className="mt-12 flex items-center  gap-4 justify-center flex-wrap">
+    <div
+      className="mt-10 md:mt-12 flex items-center 
+    gap-2 md:gap-2 lg:gap-4 justify-center flex-wrap"
+    >
       {scrambledWords.map((word, index) => (
         <div
           key={index}
           onClick={() => onWordClick(index)}
-          className={`${getRandomColor()} mr-4 p-3 font-bold text-lg 
+          className={`${wordColors[index]} p-1 md:p-1 lg:p-4 font-bold md:text-lg 
           rounded cursor-pointer text-white`}
         >
           {word}
@@ -53,18 +61,12 @@ type SentenceDisplayProps = {
 
 const SentenceDisplay: React.FC<SentenceDisplayProps> = ({ userSentence }) => (
   <div
-    className="flex flex-wrap items-center w-full gap-4 px-2
+    className="flex flex-wrap items-center w-full px-2  
    bg-gray-700 justify-start rounded-md py-8"
   >
     {userSentence.map((word, index) => (
-      <div key={index} className="rounded ">
-        <span
-          className={`text-white rounded-md p-2 border-gray-100 ${
-            word !== "" ? "border" : ""
-          }`}
-        >
-          {word}
-        </span>
+      <div key={index} className="rounded px-1 md:px-2">
+        <span className={`text-white${word !== "" ? "" : ""}`}>{word}</span>
       </div>
     ))}
   </div>

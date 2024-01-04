@@ -13,12 +13,16 @@ const ToggleMenuButton: React.FC<ToggleMenuButtonProps> = ({ onClick }) => {
   return (
     <div>
       <button
-        className={` w-12 h-12 mt-8 flex items-center justify-center  text-gray-100
+        className={` w-8 h-8 md:w-10 md:h-10 mt-8 flex items-center justify-center  text-white
            bottom-4 bg-slate-200 ${isDarkMode ? "dark:bg-slate-800" : ""}
             text-white px-2 py-2 rounded`}
         onClick={onClick}
       >
-        <FaBars size={22} color={isDarkMode ? "white" : "black"} />
+        <FaBars
+          className="w-4 h-4 md:w-6 md:h-6"
+          size={22}
+          color={isDarkMode ? "white" : "black"}
+        />
       </button>
     </div>
   );

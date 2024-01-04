@@ -24,11 +24,7 @@ const SubLessonDetail: React.FC<PropType> = ({ subLessonData, quizzes }) => {
         isDarkMode ? "dark:bg-slate-900" : ""
       }`}
     >
-      <h1
-        className={`text-black text-2xl mt-4 mb-4 ${
-          isDarkMode ? "text-slate-200" : ""
-        }`}
-      >
+      <h1 className={`text-black  my-4 ${isDarkMode ? "text-slate-200" : ""}`}>
         {/* {subLessonData.title} */}
       </h1>
       <MarkdownRenderer articlePath={subLessonData.articlePath} />

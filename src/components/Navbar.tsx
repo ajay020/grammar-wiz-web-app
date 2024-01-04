@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const { isDarkMode, toggleTheme } = useTheme();
 
-  const linkTextStyles = `text-slate-900 text-md hover:text-blue-500 hover:underline ${
+  const linkTextStyles = `text-slate-900 text-sm md:text-md lg:text-lg hover:text-blue-500 hover:underline ${
     isDarkMode ? "dark:text-slate-200 " : ""
   }`;
 
@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* Logo or Site Name */}
           <Link
             to="/"
-            className={`text-black text-xl font-bold ${
+            className={`text-black text-sm md:text-md lg:text-lg font-bold ${
               isDarkMode ? "dark:text-slate-200" : ""
             }`}
           >
@@ -62,7 +62,7 @@ const Navbar = () => {
             </li>
           </ul>
           <div>
-            <button onClick={toggleTheme}>
+            <button onClick={toggleTheme} aria-label="Toggle Dark Mode">
               {isDarkMode ? (
                 <FaSun size={24} className="text-yellow-500" />
               ) : (

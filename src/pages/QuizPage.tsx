@@ -15,11 +15,13 @@ const QuizPage = () => {
         isDarkMode ? "dark:bg-slate-900" : ""
       }`}
     >
-      <h2
-        className={`text-black my-4 ${isDarkMode ? "dark:text-slate-200" : ""}`}
+      <h1
+        className={`text-black font-bold md:text-lg my-6 ${
+          isDarkMode ? "dark:text-slate-200" : ""
+        }`}
       >
         Quiz
-      </h2>
+      </h1>
       <div className="w-1/2 mx-auto">
         <QuizComponent quiz={quiz} />
       </div>

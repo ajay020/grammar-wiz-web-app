@@ -8,21 +8,26 @@ interface QuizProgressProps {
 
 const QuizProgress: React.FC<QuizProgressProps> = ({ takenQuestions }) => {
   const getBg = (question: ProgressQuestionType) => {
-    let bgColor = "bg-gray-500";
+    let borderColor = "border-black";
 
     if (question.isSolved) {
       if (question.isCorrect) {
-        bgColor = "bg-green-500";
+        borderColor = "border-green-500";
       } else {
-        bgColor = "bg-red-500";
+        borderColor = "border-red-500";
       }
     }
-    return bgColor;
+    return borderColor;
   };
 
   const circles = takenQuestions.map((question, index) => (
     <div key={index} className="flex items-center justify-center">
-      <div key={index} className={`w-4 h-4 rounded-full ${getBg(question)}`} />
+      <div
+        key={index}
+        className={`w-2 h-2 md:w-4 md:h-4 border rounded-full ${getBg(
+          question
+        )}`}
+      />
       {/* {index < takenQuestions.length - 1 && (
         <div className={`h-1 w-12 bg-gray-200`} />
       )} */}
@@ -30,7 +35,7 @@ const QuizProgress: React.FC<QuizProgressProps> = ({ takenQuestions }) => {
   ));
 
   return (
-    <div className="flex items-center justify-center gap-4 w-full py-2">
+    <div className="flex items-center justify-center gap-2 md:gap-4 w-full py-2">
       {circles}
     </div>
   );

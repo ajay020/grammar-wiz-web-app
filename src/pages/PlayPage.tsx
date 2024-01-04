@@ -1,4 +1,3 @@
-import React from "react";
 import { useTheme } from "../theme/ThemeContext";
 import ScrambleGame from "../components/game/ScrableGame";
 
@@ -12,8 +11,8 @@ const PlayPage = () => {
       }`}
     >
       <h1
-        className={`text-black text-lg mt-4 ${
-          isDarkMode ? "dark:text-slate-200" : ""
+        className={`text-black font-bold md:text-lg mt-4 ${
+          isDarkMode ? "dark:text-slate-100" : ""
         }`}
       >
         Word Scramble
