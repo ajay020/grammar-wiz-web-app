@@ -13,9 +13,13 @@ const HomePage: React.FC<HomePageProps> = () => {
   const { isDarkMode } = useTheme();
 
   return (
-    <div className={`bg-white ${isDarkMode ? "dark:bg-slate-900" : ""}`}>
+    <div
+      className={`bg-white transition-all duration-300 ${
+        isDarkMode ? "dark:bg-slate-900" : ""
+      }`}
+    >
       <div
-        className={`bg-white w-2/3 mx-auto p-4 ${
+        className={`bg-white w-2/3 transition-all duration-300 mx-auto p-4 ${
           isDarkMode ? "dark:bg-slate-900" : ""
         }`}
       >
