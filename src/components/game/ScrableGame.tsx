@@ -32,7 +32,7 @@ const ScrambledWords: React.FC<ScrambledWordsProps> = ({
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
-  const [wordColors, setWordColors] = useState<string[]>(() =>
+  const [wordColors] = useState<string[]>(() =>
     scrambledWords.map(() => getRandomColor())
   );
 

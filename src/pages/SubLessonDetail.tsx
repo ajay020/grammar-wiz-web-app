@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { Quiz, SubLesson } from "../types";
 import MarkdownRenderer from "../components/MarkDownRenderer";
-import QuizComponent from "../components/QuizComponent";
 import { useTheme } from "../theme/ThemeContext";
 
 type PropType = {
