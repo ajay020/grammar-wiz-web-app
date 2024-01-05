@@ -8,7 +8,7 @@ import {
 import { useTheme } from "../theme/ThemeContext";
 import QuizProgress from "./QuizProgress";
 import Button from "./common/Button";
-import QuizResult from "./QuizResult";
+import QuizResult from "./quizResult/QuizResult";
 
 interface QuizComponentProps {
   quiz: QuizType;

@@ -21,9 +21,9 @@ const LessonDetails: React.FC<PropType> = ({ lesson }) => {
         isDarkMode ? "dark:bg-slate-900" : ""
       }`}
     >
-      {/* <h1 className={`text-black my-4  ${isDarkMode ? "text-red-100" : ""}`}>
+      <h1 className={`text-black my-4  ${isDarkMode ? "text-red-100" : ""}`}>
         {lesson?.title}
-      </h1> */}
+      </h1>
       {lesson.articlePath && (
         <MarkdownRenderer articlePath={lesson.articlePath} />
       )}
