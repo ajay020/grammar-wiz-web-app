@@ -6,7 +6,7 @@ import {
   Quiz as QuizType,
 } from "../types";
 import { useTheme } from "../theme/ThemeContext";
-import QuizProgress from "./QuizProgress";
+import QuizProgress from "./quizProgress/QuizProgress";
 import Button from "./common/Button";
 import QuizResult from "./quizResult/QuizResult";
 

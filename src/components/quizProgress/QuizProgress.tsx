@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ProgressQuestionType } from "../types";
+import { ProgressQuestionType } from "../../types";
 
 interface QuizProgressProps {
   takenQuestions: ProgressQuestionType[];
@@ -8,7 +8,7 @@ interface QuizProgressProps {
 
 const QuizProgress: React.FC<QuizProgressProps> = ({ takenQuestions }) => {
   const getBg = (question: ProgressQuestionType) => {
-    let borderColor = "border-black";
+    let borderColor = "border-slate-600";
 
     if (question.isSolved) {
       if (question.isCorrect) {
@@ -23,6 +23,7 @@ const QuizProgress: React.FC<QuizProgressProps> = ({ takenQuestions }) => {
   const circles = takenQuestions.map((question, index) => (
     <div key={index} className="flex items-center justify-center">
       <div
+        data-testid="quiz-progress-circle"
         key={index}
         className={`w-2 h-2 md:w-4 md:h-4 border rounded-full ${getBg(
           question
@@ -35,7 +36,10 @@ const QuizProgress: React.FC<QuizProgressProps> = ({ takenQuestions }) => {
   ));
 
   return (
-    <div className="flex items-center justify-center gap-2 md:gap-4 w-full py-2">
+    <div
+      data-testid="quiz-progress"
+      className="flex items-center justify-center gap-2 md:gap-4 w-full py-2"
+    >
       {circles}
     </div>
   );
