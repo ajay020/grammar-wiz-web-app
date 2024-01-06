@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
 
-import { useTheme } from "../theme/ThemeContext";
+import { useTheme } from "../../theme/ThemeContext";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("/");
@@ -28,7 +28,7 @@ const Navbar = () => {
               isDarkMode ? "dark:text-slate-200" : ""
             }`}
           >
-            English Grammar Wiz
+            <h1> English Grammar Wiz</h1>
           </Link>
 
           {/* Navigation Links */}
