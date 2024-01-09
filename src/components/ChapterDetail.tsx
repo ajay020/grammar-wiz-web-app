@@ -1,6 +1,7 @@
 // components/ChapterDetail.js
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+
 import { Chapter, Lesson } from "../types"; // Adjust the import path
 import { createSlug, decodeSlug } from "../utils/utils";
 import {
@@ -8,7 +9,6 @@ import {
   fetchLessonsForTitle,
 } from "../services/DataService";
 import { useTheme } from "../theme/ThemeContext";
-import MarkdownRenderer from "./MarkDownRenderer";
 
 interface ChapterDetailProps {
   //   chapter: Chapter;
